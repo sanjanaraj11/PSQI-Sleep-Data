@@ -5,20 +5,15 @@ import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+import sys
 get_ipython().run_line_magic('matplotlib', 'inline')
 
-df = pd.read_csv("cleanedDatas.csv")
+#df = pd.read_csv("cleanedDatas.csv")
 
+inputFile = sys.argv[1];
+outputPath = sys.argv[2]; #if you want the user to explicitly specify the output path
 
-#inputFilepath = '/Users/Sanjana/Desktop/Project/cleanedDatas.csv'
-#filename_w_ext = os.path.basename(inputFilepath)
-#filename, file_extension = os.path.splitext(filename_w_ext)
-#filename = foobar
-#file_extension = .txt
-
-#path, filename = os.path.split(Users/Sanjana/Desktop/Project/cleanedDatas.csv)
-# path = path/to/file
-# filename = foobar.txt
+df = pd.read_csv(inputFile)
 
 df['comp1'] = df['psqi9']
 
@@ -122,3 +117,4 @@ df['GlobalPSQI'] = df['comp1'] + df['comp2']  + df['comp4'] + df['comp3'] + df['
 
 df.plot(x='comp4',y='GlobalPSQI', linestyle = 'none', marker = 'o')
 
+df.to_csv(outputPath, sep='\t')
