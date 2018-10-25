@@ -3,8 +3,13 @@
 
 import pandas as pd
 import numpy as np
+import sys
 
-df = pd.read_csv("PSQI_full.csv")
+inputFile = sys.argv[1];
+outputPath = sys.argv[2]; #if you want the user to explicitly specify the output path
+
+df = pd.read_csv(inputFile)
+#df = pd.read_csv("PSQI_full.csv")
 
 df.head()
 
@@ -108,8 +113,8 @@ df['psqi4'].replace(
     inplace=True
 )
 
-df.to_csv('cleanedData.csv', sep='\t')
-
+#df.to_csv('cleanedData.csv', sep='\t')
+df.to_csv(outputPath, sep='\t')
 
 
 
